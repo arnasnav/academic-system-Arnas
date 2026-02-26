@@ -1,21 +1,21 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { ReactNode, useEffect, useRef, useState } from "react"
+import { XMarkIcon } from "@heroicons/react/24/outline"
 
 type ISetOpenModal = {
-  setOpenModal: (s: boolean) => void;
-};
+  setOpenModal: (s: boolean) => void
+}
 
 type IProps = ISetOpenModal & {
-  openModal: boolean;
-  title: string;
-  children: ReactNode;
-};
+  openModal: boolean
+  title: string
+  children: ReactNode
+}
 
 export function Modal(props: IProps) {
-  const { title, openModal, setOpenModal, children } = props;
-  const [show, setShow] = useState<boolean>(openModal);
+  const { title, openModal, setOpenModal, children } = props
+  const [show, setShow] = useState<boolean>(openModal)
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -24,18 +24,18 @@ export function Modal(props: IProps) {
         wrapperRef.current &&
         !wrapperRef.current.contains(event.target as HTMLDivElement)
       ) {
-        setShow(false);
-        setOpenModal(false);
+        setShow(false)
+        setOpenModal(false)
       }
-    };
+    }
 
     if (show) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside)
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
+        document.removeEventListener("mousedown", handleClickOutside)
+      }
     }
-  }, [show, wrapperRef]);
+  }, [show, wrapperRef])
 
   return openModal ? (
     <div className="fixed left-0 top-0 z-10 box-border flex h-screen w-screen justify-center bg-black bg-opacity-50 align-middle">
@@ -57,5 +57,5 @@ export function Modal(props: IProps) {
         <div className="space-y-4 p-4">{children}</div>
       </div>
     </div>
-  ) : null;
+  ) : null
 }

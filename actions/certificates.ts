@@ -1,4 +1,5 @@
 "use server"
+
 import { IState } from "@/types/shared-t"
 import { postApi, putApi } from "@/utils/server-api"
 import { z } from "zod"
@@ -44,13 +45,12 @@ export async function createCertificates(
     }
   }
 
-  const dto = parse.data;
-  
+  const dto = parse.data
   if (!dto?.id) {
-    await postApi(`/api/certificates`, dto);
-    return { message: "Duomenys sėkmingai išsiųsti", isSaved: true };
+    await postApi(`/api/certificates`, dto)
+    return { message: "Duomenys sėkmingai išsiųsti", isSaved: true }
   }
-  
-  await putApi(`/api/certificates/${dto.id}`, dto);
-  return { message: "Atnaujinti duomenys sėkmingai", isSaved: true };
+
+  await putApi(`/api/certificates/${dto.id}`, dto)
+  return { message: "Atnaujinti duomenys sėkmingai", isSaved: true }
 }

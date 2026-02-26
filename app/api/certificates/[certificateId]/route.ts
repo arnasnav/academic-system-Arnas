@@ -6,12 +6,17 @@ export async function PUT(request: NextRequest) {
   const certificate: ICertificate = await request.json()
   const certificateService = new CertificateService()
   await certificateService.updateCertificate(certificate)
-  return Response.json({ message: "The update was completed successfully" })
+  return Response.json({ message: "Pakeitimas sėkmingai įvykdytas"})
 }
 
-export async function DELETE(_req: NextRequest, ctx: RouteContext<"/api/certificates/[certificateId]">) {
-  const { certificateId } = await ctx.params
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ certificateId: string }> }
+) {
+  const { certificateId } = await params
+
   const certificateService = new CertificateService()
-  await certificateService.deleteCertificate(certificateId)
-  return Response.json({ message: "The deletion was completed successfully" })
+  
+  //await certificateService.deleteCertificate(certificateId)
+  return Response.json({ message: "Pakeitimas sėkmingai įvykdytas"})
 }

@@ -1,6 +1,6 @@
 import { auth } from "@/utils/auth"
 import { headers } from "next/headers"
-import { signOutAction } from "@/actions/signout-action"
+import { signOutAction } from "@/actions/signOut-action"
 
 export async function AuthNav() {
   const session = await auth.api.getSession({
@@ -11,41 +11,25 @@ export async function AuthNav() {
     <ul className="grid grid-flow-col w-fit gap-x-2">
       {!session ? (
         <>
-          <li>
-            <a className="text-sm text-orange-700" href="/signup">
-              Sign Up
-            </a>
-          </li>
-          <li>
-            <a className="text-sm text-orange-700" href="/signin">
-              Sign In
-            </a>
-          </li>
+          <li><a className="text-sm text-orange-700" href="/signup">Sign Up</a></li>
+          <li><a className="text-sm text-orange-700" href="/signin">Sign In</a></li>
         </>
-      ) : null}
-
-      {session ? (
+      ) : (
         <>
           <li>
-            <button
-              type="button"
-              className="text-sm text-orange-700 hover:underline cursor-pointer"
-            >
+            <button className="text-sm text-orange-700 hover:underline cursor-pointer">
               {session?.user ? session?.user?.name : ""}
             </button>
           </li>
           <li>
             <form action={signOutAction}>
-              <button
-                className="text-sm text-orange-700 hover:underline cursor-pointer"
-                type="submit"
-              >
+              <button type="submit" className="text-sm text-orange-700 hover:underline cursor-pointer">
                 Sign Out
               </button>
             </form>
           </li>
         </>
-      ) : null}
+      )}
     </ul>
   )
 }
