@@ -13,7 +13,7 @@
     "bcrypt": "^6.0.0",
     "better-auth": "^1.4.19",
     "mongodb": "^7.1.0",
-    "mongoose": "^9.2.2",
+    "mongoose": "^9.2.3",
     "next": "16.1.6",
     "npm-check-updates": "^19.5.0",
     "react": "19.2.4",

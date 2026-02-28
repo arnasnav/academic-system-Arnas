@@ -3,6 +3,9 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb"
 import { nextCookies } from "better-auth/next-js"
 import mongoose from "mongoose"
 import { connectMongoose } from "@/utils/mongoose-client"
+import { Db } from "mongodb"
+
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 
 await connectMongoose()
 const mongoClient = mongoose.connection.getClient()
